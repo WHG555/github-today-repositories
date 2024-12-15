@@ -36,8 +36,15 @@ jobs:
       run: |
         ls -alh
         python run.py
-    - name: Push tag
-      run: |
-        git config --local user.email "whghcyx@outlook.com"
-        git config --local user.name "WHG555"
-        git push origin main
+    - uses: rematocorp/open-pull-request-action@v1
+      with:
+        # Github token, https://docs.github.com/en/actions/reference/authentication-in-a-workflow
+        github-token: ${{secrets.TODAY_GITHUB_KEY}}
+        # head branch
+        from-branch: main
+        # base branch
+        to-branch: main
+        # 
+        repository-owner: WHG555
+        # 
+        repository: github-today-repositories
