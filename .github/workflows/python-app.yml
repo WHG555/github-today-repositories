@@ -38,15 +38,12 @@ jobs:
       run: |
         ls -alh
         python run.py
-    - uses: rematocorp/open-pull-request-action@v1
-      with:
-        # Github token, https://docs.github.com/en/actions/reference/authentication-in-a-workflow
-        github-token: ${{secrets.TODAY_GITHUB_KEY}}
-        # head branch
-        from-branch: main
-        # base branch
-        to-branch: main
-        # 
-        repository-owner: WHG555
-        # 
-        repository: github-today-repositories
+    - name: git-pull-code
+      run: |
+        git config --global user.name "WHG555"
+        git config --global user.email "whghcyx@outlook.com"
+        git add .
+        git commit -m "feat: Update code"
+        git push https://${{secrets.TODAY_GITHUB_KEY}}@github.com/${{ github.repository }}.git HEAD:main
+      env:
+        GH_TOKEN: ${{ secrets.TODAY_GITHUB_KEY }}
