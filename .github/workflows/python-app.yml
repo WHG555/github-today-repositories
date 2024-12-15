@@ -1,13 +1,14 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
+# Action 的名字
 name: Python application
 
 on:
+  # 触发条件1：main 分支收到 push 后执行任务。
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  # 触发条件2：手动按钮
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,6 +17,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
 
     steps:
     - uses: actions/checkout@v4
@@ -28,6 +32,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: test
+      run: |
+        ls -alh
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
