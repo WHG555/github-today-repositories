@@ -38,6 +38,13 @@ jobs:
       run: |
         ls -alh
         python run.py
+    - name: git-pull-code
+      run: |
+        git config --global user.name "WHG555"
+        git config --global user.email "whghcyx@outlook.com"
+        git add .
+        git commit -m "Update README with a new quote - $(date +"%Y-%m-%d")"
+        git push
     - uses: actions/stale@v5
     - uses: rematocorp/open-pull-request-action@v1
       with:
