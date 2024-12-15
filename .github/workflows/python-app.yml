@@ -4,7 +4,7 @@ name: Python application
 on:
   schedule:
     - cron: '30 12 * * *'
-    - cron: '45 20 * * *'
+    - cron: '20/15 * * * *'
   # 触发条件2：手动按钮
   workflow_dispatch:
 
