@@ -12,6 +12,8 @@ on:
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   build:
@@ -36,6 +38,7 @@ jobs:
       run: |
         ls -alh
         python run.py
+    - uses: actions/stale@v5
     - uses: rematocorp/open-pull-request-action@v1
       with:
         # Github token, https://docs.github.com/en/actions/reference/authentication-in-a-workflow
