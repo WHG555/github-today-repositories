@@ -32,7 +32,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: test
+    - name: get-today-github
       run: |
         ls -alh
         python run.py
+    - name: Push tag
+      run: |
+        git config --local user.email "whghcyx@outlook.com"
+        git config --local user.name "WHG555"
+        git push origin main
