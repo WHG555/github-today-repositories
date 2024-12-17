@@ -68,33 +68,33 @@ def getGithubNews(date="day"):
             codelink = dt.xpath(".//*[contains(concat(' ', normalize-space(@class), ' '), ' h3 lh-condensed ')]")[0].xpath(".//a/@href")[0]
         except:
             codelink = ""
-        print(codelink)
+        print("代码的路径->", codelink)
         try:
             codereadme = dt.xpath(".//*[contains(concat(' ', normalize-space(@class), ' '), 'col-9 color-fg-muted my-1 pr-4')]/text()")[0].strip()
         except:
             codereadme = ""
-        print(codereadme)
+        print("说明的文档->", codereadme)
         try:
             codelanguage = dt.xpath('.//span[@itemprop="programmingLanguage"]/text()')[0]
         except:
             codelanguage = ""
-        print(codelanguage)
+        print("编程的语言->", codelanguage)
         try:
-            codestar = dt.xpath(".//a[@href='" + codelink + "/stargazers" + "']/text()")[1].strip().replace(",", "")
+            codestar = dt.xpath(".//a[@href='" + codelink + "/stargazers" + "']/text()")[0].strip().replace(",", "")
         except:
             codestar = ""
-        print(codestar)
+        print("代码star数->", codestar)
         try:
-            codefork = dt.xpath(".//a[@href='" + codelink + "/forks" + "']/text()")[1].strip().replace(",", "")
+            codefork = dt.xpath(".//a[@href='" + codelink + "/forks" + "']/text()")[0].strip().replace(",", "")
         except:
             codefork = ""
-        print(codefork)
+        print("代码fork数->", codefork)
         try:
             codethisstar = dt.xpath(".//*[contains(concat(' ', normalize-space(@class), ' '), 'd-inline-block float-sm-right')]/text()")[1]
             codethisstar = "".join(''.join([c if c.isdigit() else ' ' for c in codethisstar]).split())
         except:
             codethisstar = ""
-        print(codethisstar)
+        print("今日Star数->", codethisstar)
         ws.append([ codelink.split("/")[-1] ,"https://www.github.com" + codelink, codereadme, codelanguage, codestar, codefork, codethisstar, time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())])
 
     # 保存工作簿
