@@ -3,8 +3,7 @@ name: Python application
 
 on:
   schedule:
-    - cron: '05 10 * * *'
-    - cron: '45 * * * *'
+    - cron: '15 01 * * *'
   # 触发条件2：手动按钮
   workflow_dispatch:
 
